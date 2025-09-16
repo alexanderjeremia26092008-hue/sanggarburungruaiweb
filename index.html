@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sanggar Burung Ruai</title>
+    <link rel="icon" type="image/png" href="logo.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // --- Carousel Event (1 slide = 1 foto, smooth, loop) ---
+            const track = document.querySelector(".event-track");
+            if (track) {
+                const slides = track.querySelectorAll(".event-slide");
+                let idx = 0;
+                track.style.transition = "transform 0.7s ease";
+                setInterval(() => {
+                    idx = (idx + 1) % slides.length;
+                    track.style.transform = `translateX(-${idx * 100}%)`;
+                }, 4000);
+            }
+
+            // Navigasi antar halaman (single page)
+            const sections = document.querySelectorAll("section");
+            window.showPage = (id) => {
+                sections.forEach(sec => sec.classList.add("hidden"));
+                const el = document.getElementById(id);
+                if (el) el.classList.remove("hidden");
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+            };
+            window.goBack = () => showPage("home");
+        });
+    </script>
+</head>
+
+<body class="bg-white text-gray-800 font-sans">
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full bg-[#800000] text-white shadow-md z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <img src="logo.png" alt="Logo Sanggar Burung Ruai" class="h-12 w-12 object-contain" />
+                <span class="text-2xl font-bold tracking-wide">Sanggar Burung Ruai</span>
+            </div>
+            <ul class="hidden md:flex space-x-8 font-medium">
+                <li><button onclick="showPage('home')" class="hover:underline">Home</button></li>
+                <li><button onclick="showPage('karya')" class="hover:underline">Karya</button></li>
+                <li><button onclick="showPage('about')" class="hover:underline">About Us</button></li>
+                <li><button onclick="showPage('events')" class="hover:underline">Event</button></li>
+                <li><button onclick="showPage('schedule')" class="hover:underline">Schedule</button></li>
+                <li><button onclick="showPage('contact')" class="hover:underline">Contact</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HOME -->
+    <section id="home" class="pt-16">
+        <!-- Hero -->
+        <div class="relative h-[60vh] flex items-center justify-center bg-[url('unitdetractorsev.png')] bg-cover bg-center">
+            <div class="absolute inset-0 bg-white/70"></div>
+            <div class="relative z-10 text-center text-[#800000]">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">Sanggar Burung Ruai</h1>
+                <p class="text-lg md:text-xl">Pelestarian Seni Budaya Dayak</p>
+            </div>
+        </div>
+
+        <!-- Karya Preview -->
+        <div class="py-16 bg-[#fdf5dc] text-center">
+            <h2 class="text-3xl font-bold text-[#800000] mb-8">Karya</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <img src="pkd2025gl1.png" class="rounded-xl shadow object-cover w-full h-64">
+                <img src="warukingl.png" class="rounded-xl shadow object-cover w-full h-64">
+                <img src="pkd2025gl.png" class="rounded-xl shadow object-cover w-full h-64">
+            </div>
+            <button onclick="showPage('karya')" class="mt-6 px-6 py-3 bg-[#800000] text-white rounded-lg shadow hover:bg-red-900">Lihat Semua</button>
+        </div>
+
+        <!-- About Us Ringkas -->
+        <div class="py-16 bg-white text-center">
+            <h2 class="text-3xl font-bold text-[#800000] mb-8">About Us</h2>
+            <div class="max-w-xl mx-auto p-6 bg-[#fdf5dc] rounded-xl shadow">
+                <h3 class="font-bold mb-2">Sejarah</h3>
+                <p>Sanggar Burung Ruai berdiri untuk melestarikan seni Dayak.</p>
+            </div>
+        </div>
+
+        <!-- Event Preview (carousel kiri) -->
+        <div class="py-16 bg-[#fdf5dc] text-center">
+            <h2 class="text-3xl font-bold text-[#800000] mb-8">Event</h2>
+
+            <!-- Carousel viewport -->
+            <div class="relative w-full max-w-4xl mx-auto overflow-hidden rounded-xl shadow">
+                <div class="event-track flex w-full">
+                    <img src="pkd2025ev.png" class="event-slide flex-shrink-0 w-full h-96 object-cover" />
+                    <img src="pkd2024ev.png" class="event-slide flex-shrink-0 w-full h-96 object-cover" />
+                    <img src="penggelaranseninusantarabjm.png" class="event-slide flex-shrink-0 w-full h-96 object-cover" />
+                    <img src="haritariduniaev.png" class="event-slide flex-shrink-0 w-full h-96 object-cover" />
+                    <img src="beachdjorongev.png" class="event-slide flex-shrink-0 w-full h-96 object-cover" />
+                </div>
+            </div>
+
+            <button onclick="showPage('events')" class="mt-6 px-6 py-3 bg-[#800000] text-white rounded-lg shadow hover:bg-red-900">Lihat Semua</button>
+        </div>
+
+        <!-- Contact Ringkas -->
+        <div class="py-16 bg-white text-center">
+            <h2 class="text-3xl font-bold text-[#800000] mb-8">Contact</h2>
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="p-6 bg-[#fdf5dc] rounded-xl shadow text-left">
+                    <p><strong>Nama:</strong> Chella Sanjari</p>
+                    <p><strong>Telepon:</strong> 083136503989</p>
+                    <p><strong>Alamat:</strong> Banjarbaru, Kalimantan Selatan</p>
+                    <p><strong>Email:</strong> sanggarburungruai@gmail.com</p>
+                </div>
+                <div>
+                    <iframe class="w-full h-64 rounded-xl shadow" src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d946.3737660137664!2d114.81123626954808!3d-3.4593689997821824!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zM8KwMjcnMzMuNyJTIDExNMKwNDgnNDIuOCJF!5e1!3m2!1sid!2sid!4v1757994229687!5m2!1sid!2sid"
+                        style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KARYA FULL -->
+    <section id="karya" class="hidden pt-20 bg-[#fdf5dc] min-h-screen">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-3xl font-bold text-[#800000] mb-8">Dokumentasi</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <img src="customergatheringpt.unitedtractorsev.png" class="rounded-xl shadow w-full h-64 object-contain bg-white">
+                <img src="warukingl.png" class="rounded-xl shadow w-full h-64 object-cover">
+                <img src="pkd2025gl2.png" class="rounded-xl shadow w-full h-64 object-cover">
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 max-w-4xl mx-auto">
+                <img src="pkd2025gl1.png" class="rounded-xl shadow w-full h-64 object-cover">
+                <img src="haritariduniaev.png" class="rounded-xl shadow w-full h-64 object-cover">
+            </div>
+            <button onclick="goBack()" class="fixed bottom-4 left-4 px-6 py-3 bg-[#800000] text-white rounded-lg">← Kembali</button>
+        </div>
+    </section>
+
+    <!-- EVENTS FULL -->
+    <section id="events" class="hidden pt-20 bg-white min-h-screen">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-3xl font-bold text-[#800000] mb-8">Events Lengkap</h2>
+
+            <!-- Formasi 3-2-3-2-3 -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div><img src="beachdjorongev.png" class="rounded-xl shadow w-full h-64 object-cover">
+                    <p>25 Jan 2024 - Beach Djorong</p>
+                </div>
+                <div><img src="haritariduniaev.png" class="rounded-xl shadow w-full h-64 object-cover">
+                    <p>29 Apr 2025 - Banjarmasin</p>
+                </div>
+                <div><img src="penggelaranseninusantarabjm.png" class="rounded-xl shadow w-full h-64 object-cover">
+                    <p>19 Agus 2025 - Banjarmasin</p>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 max-w-3xl mx-auto">
+                <div><img src="pkd2024ev.png" class="rounded-xl shadow w-full h-64 object-cover">
+                    <p>6 Juli 2024 - Banjarbaru</p>
+                </div>
+                <div><img src="pkd2025ev.png" class="rounded-xl shadow w-full h-64 object-cover">
+                    <p>28 Agus 2025 - Banjarbaru</p>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+                <div><img src="selamatharijadiprovinsikalselev.png" class="rounded-xl shadow w-full h-64 object-cover">
+                    <p>14 Agus 2024 - Banjarmasin</p>
+                </div>
+                <div><img src="unitdetractorsev.png" class="rounded-xl shadow w-full h-64 object-cover">
+                    <p>24 Okt 2024 - Banjarmasin</p>
+                </div>
+                <div><img src="warukinev.png" class="rounded-xl shadow w-full h-64 object-cover">
+                    <p>31 Agus 2025 - Warukin, Tanjung</p>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 max-w-3xl mx-auto">
+                <div><img src="warukinev3.png" class="rounded-xl shadow w-full h-64 object-cover">
+                    <p>31 Agus 2025 - Warukin, Tanjung</p>
+                </div>
+                <div><img src="warukinev1.png" class="rounded-xl shadow w-full h-64 object-cover">
+                    <p>31 Agus 2025 - Warukin, Tanjung</p>
+                </div>
+            </div>
+
+            <button onclick="goBack()" class="fixed bottom-4 left-4 px-6 py-3 bg-[#800000] text-white rounded-lg">← Kembali</button>
+        </div>
+    </section>
+
+    <!-- ABOUT US FULL -->
+    <section id="about" class="hidden pt-20 bg-white min-h-screen">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-3xl font-bold text-[#800000] mb-8">About Us</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="p-6 bg-[#fdf5dc] rounded-xl shadow">
+                    <h3 class="font-bold mb-2">Sejarah</h3>
+                    <p>Sanggar Burung Ruai berdiri untuk melestarikan seni Dayak.</p>
+                </div>
+                <div class="p-6 bg-[#fdf5dc] rounded-xl shadow">
+                    <h3 class="font-bold mb-2">Visi</h3>
+                    <p>Mengangkat budaya Dayak ke tingkat global.</p>
+                </div>
+                <div class="p-6 bg-[#fdf5dc] rounded-xl shadow">
+                    <h3 class="font-bold mb-2">Misi</h3>
+                    <p>Melatih generasi muda dalam seni tari, musik, dan budaya.</p>
+                </div>
+            </div>
+            <button onclick="goBack()" class="fixed bottom-4 left-4 px-6 py-3 bg-[#800000] text-white rounded-lg">← Kembali</button>
+        </div>
+    </section>
+
+    <!-- SCHEDULE -->
+    <section id="schedule" class="hidden pt-20 bg-white min-h-screen">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-3xl font-bold text-[#800000] mb-8">Schedule</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="p-6 bg-[#fdf5dc] rounded-xl shadow">Workshop Tari - Januari 2025</div>
+                <div class="p-6 bg-[#fdf5dc] rounded-xl shadow">Pelatihan Musik - Februari 2025</div>
+                <div class="p-6 bg-[#fdf5dc] rounded-xl shadow">Festival Budaya - Maret 2025</div>
+            </div>
+            <button onclick="goBack()" class="fixed bottom-4 left-4 px-6 py-3 bg-[#800000] text-white rounded-lg">← Kembali</button>
+        </div>
+    </section>
+
+    <!-- CONTACT FULL -->
+    <section id="contact" class="hidden pt-20 bg-[#fdf5dc] min-h-screen">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-3xl font-bold text-[#800000] mb-8">Contact</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="p-6 bg-white rounded-xl shadow">
+                    <h3 class="font-bold mb-2">Nama</h3>
+                    <p>Chella Sanjari</p>
+                </div>
+                <div class="p-6 bg-white rounded-xl shadow">
+                    <h3 class="font-bold mb-2">Telepon</h3>
+                    <p>083136503989</p>
+                </div>
+                <div class="p-6 bg-white rounded-xl shadow">
+                    <h3 class="font-bold mb-2">Alamat</h3>
+                    <p>Banjarbaru, Kalimantan Selatan</p>
+                </div>
+            </div>
+            <div class="mt-6">
+                <iframe class="w-full h-80 rounded-xl shadow" src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d946.3737660137664!2d114.81123626954808!3d-3.4593689997821824!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zM8KwMjcnMzMuNyJTIDExNMKwNDgnNDIuOCJF!5e1!3m2!1sid!2sid!4v1757994229687!5m2!1sid!2sid"
+                    style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <button onclick="goBack()" class="fixed bottom-4 left-4 px-6 py-3 bg-[#800000] text-white rounded-lg">← Kembali</button>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#800000] text-white text-center py-4 mt-10">
+        <p>&copy;2022SanggarBurungRuaiBanjarbaru</p>
+    </footer>
+
+</body>
+
+</html>
